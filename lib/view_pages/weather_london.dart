@@ -2,23 +2,23 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:weatherapp/additional_info_item.dart';
+import 'package:weatherapp/hourly_forecast_item.dart';
 import 'package:weatherapp/secrets.dart';
-import 'additional_info_item.dart';
-import 'hourly_forecast_item.dart';
 import 'package:http/http.dart' as http;
 
-class WeatherScreen extends StatefulWidget {
-  const WeatherScreen({super.key});
+class WeatherScreendl extends StatefulWidget {
+  const WeatherScreendl({super.key});
 
   @override
-  State<WeatherScreen> createState() => _WeatherScreenState();
+  State<WeatherScreendl> createState() => _WeatherScreenState();
 }
 
-class _WeatherScreenState extends State<WeatherScreen> {
+class _WeatherScreenState extends State<WeatherScreendl> {
   late Future<Map<String, dynamic>> weather;
-  Future<Map<String, dynamic>> getCurrentWeather() async {
+  Future<Map<String, dynamic>> getCurrentWeather(String yourLocation) async {
     try {
-      String cityName = 'Delhi';
+      String cityName = yourLocation;
       final res = await http.get(
         Uri.parse(
             'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherAPIKey'),
@@ -37,7 +37,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
-    weather = getCurrentWeather();
+    weather = getCurrentWeather('London');
   }
 
   @override
@@ -56,7 +56,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  weather = getCurrentWeather();
+                  weather = getCurrentWeather('London');
                 });
               },
               child: const Icon(Icons.refresh),
@@ -67,7 +67,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
       body: FutureBuilder(
         future: weather,
         builder: (context, snapshot) {
-          print(snapshot);
+          //print(snapshot);
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: const CircularProgressIndicator.adaptive());
           }
