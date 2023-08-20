@@ -6,19 +6,20 @@ import 'package:weatherapp/additional_info_item.dart';
 import 'package:weatherapp/hourly_forecast_item.dart';
 import 'package:weatherapp/secrets.dart';
 import 'package:http/http.dart' as http;
+import 'package:weatherapp/view_pages/weather_cityname.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({super.key});
 
   @override
-  State<WeatherScreen> createState() => _WeatherScreenState();
+  State<WeatherScreen> createState() => WeatherScreenState();
 }
 
-class _WeatherScreenState extends State<WeatherScreen> {
+class WeatherScreenState extends State<WeatherScreen> {
   late Future<Map<String, dynamic>> weather;
-  Future<Map<String, dynamic>> getCurrentWeather(String yourLocation) async {
+  Future<Map<String, dynamic>> getCurrentWeather() async {
     try {
-      String cityName = yourLocation;
+      String cityName = CityNameState.ucityName;
       final res = await http.get(
         Uri.parse(
             'https://api.openweathermap.org/data/2.5/forecast?q=$cityName&APPID=$openWeatherAPIKey'),
@@ -37,7 +38,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   @override
   void initState() {
     super.initState();
-    weather = getCurrentWeather('Mumbai');
+    weather = getCurrentWeather();
   }
 
   @override
@@ -56,7 +57,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  weather = getCurrentWeather('Mumbai');
+                  weather = getCurrentWeather();
                 });
               },
               child: const Icon(Icons.refresh),
@@ -219,4 +220,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
       ),
     );
   }
+
+  // void wheretogo() async {
+  //   var citydata = await SharedPreferences.getInstance();
+  //   citydata.getBool('city');
+  // }
 }

@@ -1,4 +1,4 @@
-class userDetails {
+class UserDetails {
   late String name;
   late int phone;
   late String email;

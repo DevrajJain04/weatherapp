@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/extra%20codes/user_details.dart';
+import 'package:weatherapp/view_pages/user_details.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<userDetails> users = [
-    userDetails(name: 'Ramesh Verma', phone: 22233444, email: 'adsad@hedd.com'),
-    userDetails(name: 'suresh verma', phone: 34333444, email: '3232@hedd.com'),
+  final List<UserDetails> users = [
+    UserDetails(name: 'Ramesh Verma', phone: 22233444, email: 'adsad@hedd.com'),
+    UserDetails(name: 'suresh verma', phone: 34333444, email: '3232@hedd.com'),
     // {"name": "Ramesh Verma", "phone": 123456, "email": 'ramesh@ramesh.com'},
     // {"name": "Suresh Sharma", "phone": 789123, "email": 'suresh@ramesh.com'},
   ];

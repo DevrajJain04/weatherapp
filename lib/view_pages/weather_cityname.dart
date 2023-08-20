@@ -4,12 +4,19 @@ class CityName extends StatefulWidget {
   const CityName({super.key});
 
   @override
-  State<CityName> createState() => _CityNameState();
+  State<CityName> createState() => CityNameState();
 }
 
-class _CityNameState extends State<CityName> {
+class CityNameState extends State<CityName> {
   final cityName = TextEditingController();
-  late String ucityName;
+  static late String ucityName;
+
+  @override
+  void dispose() {
+    super.dispose();
+    cityName.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,21 +29,15 @@ class _CityNameState extends State<CityName> {
       body: Center(
           child: Column(
         children: [
+          TextField(
+            controller: cityName,
+          ),
           ElevatedButton(
               onPressed: () {
+                ucityName = cityName.text.toString();
                 Navigator.pushNamed(context, '/weather/');
               },
-              child: Text('Mumbai Weather right now')),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/delhi/');
-              },
-              child: Text('Delhi Weather right now')),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed('/london/');
-              },
-              child: Text('London Weather right now'))
+              child: const Text('Weather right now')),
         ],
       )),
     );

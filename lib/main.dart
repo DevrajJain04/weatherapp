@@ -3,11 +3,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weatherapp/contacts_screen.dart';
 import 'package:weatherapp/view_pages/login_success_view.dart';
 import 'package:weatherapp/view_pages/weather_cityname.dart';
-import 'package:weatherapp/view_pages/weather_delhi.dart';
-import 'package:weatherapp/view_pages/weather_london.dart';
 import 'package:weatherapp/view_pages/weather_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -21,9 +19,7 @@ class MyApp extends StatelessWidget {
         home: MyLoginPage(),
         routes: {
           '/weather/': (context) => const WeatherScreen(),
-          '/delhi/': (context) => const WeatherScreend(),
-          '/london/': (context) => const WeatherScreendl(),
-          '/loginsuccess/': (context) => MyDashboard(),
+          '/loginsuccess/': (context) => const MyDashboard(),
           '/cityname/': (context) => const CityName(),
           '/contacts/': (context) => const ContactsScreen(),
         });
@@ -44,7 +40,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
   late bool newuser;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     check_if_already_login();
   }
@@ -52,10 +47,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
   void check_if_already_login() async {
     logindata = await SharedPreferences.getInstance();
     newuser = (logindata.getBool('login') ?? true);
-    print(newuser);
+    //print(newuser);
     if (newuser == false) {
       Navigator.pushReplacement(
-          context, new MaterialPageRoute(builder: (context) => MyDashboard()));
+          context, MaterialPageRoute(builder: (context) => MyDashboard()));
     }
   }
 
@@ -113,12 +108,12 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 String password = passwordController.text;
                 if (username != '' && password != '') {
                   //print('Successfull');
-                  logindata.setBool('Getin', false);
-                  logindata.setString('Name', username);
+                  logindata.setBool('login', false);
+                  logindata.setString('username', username);
                   Navigator.pushNamed(context, '/loginsuccess/');
                 }
               },
-              child: Text("Get-In"),
+              child: const Text("Get-In"),
             ),
           ],
         ),
