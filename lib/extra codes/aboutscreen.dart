@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:weatherapp/view_pages/user_details.dart';
+import 'package:weatherapp/extra%20codes/user_details.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});

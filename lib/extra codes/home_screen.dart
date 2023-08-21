@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/view_pages/user_details.dart';
+import 'package:weatherapp/extra%20codes/user_details.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<UserDetails> users = [

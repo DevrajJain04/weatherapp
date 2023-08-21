@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weatherapp/contacts_screen.dart';
+import 'package:weatherapp/view_pages/contacts_take2.dart';
 import 'package:weatherapp/view_pages/login_success_view.dart';
 import 'package:weatherapp/view_pages/weather_cityname.dart';
 import 'package:weatherapp/view_pages/weather_screen.dart';
@@ -16,17 +17,19 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData.dark(),
-        home: MyLoginPage(),
+        home: const MyLoginPage(),
         routes: {
           '/weather/': (context) => const WeatherScreen(),
           '/loginsuccess/': (context) => const MyDashboard(),
           '/cityname/': (context) => const CityName(),
-          '/contacts/': (context) => const ContactsScreen(),
+          '/contacts/': (context) => const BackupContactView(),
         });
   }
 }
 
 class MyLoginPage extends StatefulWidget {
+  const MyLoginPage({super.key});
+
   @override
   _MyLoginPageState createState() => _MyLoginPageState();
 }
@@ -66,17 +69,17 @@ class _MyLoginPageState extends State<MyLoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Beautiful Details of Beautiful People"),
+        title: const Text("Beautiful Details of Beautiful People"),
       ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               "Get-in Form",
               style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
-            Center(
+            const Center(
               child: Text(
                 "INFORMATION(Cause u have no enemies! to hide it from)",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -86,8 +89,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
               padding: const EdgeInsets.all(15.0),
               child: TextField(
                 controller: usernameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(9)),
+                  ),
                   labelText: 'username',
                 ),
               ),
