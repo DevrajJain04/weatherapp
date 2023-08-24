@@ -12,7 +12,7 @@ class MainPage extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:const MyDashboard(),
+      home: const MyDashboard(),
     );
   }
 }
@@ -27,6 +27,8 @@ class MyDashboard extends StatefulWidget {
 class MyDashboardState extends State<MyDashboard> {
   SharedPreferences? logindata;
   String? username;
+  String? dob;
+  int? phone;
   @override
   void initState() {
     super.initState();
@@ -37,6 +39,8 @@ class MyDashboardState extends State<MyDashboard> {
     logindata = await SharedPreferences.getInstance();
     setState(() {
       username = logindata?.getString('username')!;
+      dob = logindata?.getString('dob');
+      phone = logindata?.getInt('phone');
     });
   }
 
@@ -49,12 +53,26 @@ class MyDashboardState extends State<MyDashboard> {
       body: Padding(
         padding: const EdgeInsets.all(26.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Center(
               child: Text(
-                'Hey $username, what would u like to see today then?',
-                style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                'Hey $username, what would you like to see today?',
+                style:
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              ),
+            ),
+            SizedBox(
+              child: Column(
+                children: [
+                  Text('We will wish you on $dob',
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text('And your phone number : $phone',
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold)),
+                ],
               ),
             ),
             ElevatedButton(
@@ -66,12 +84,12 @@ class MyDashboardState extends State<MyDashboard> {
                 onPressed: () {
                   Navigator.pushNamed(context, '/contacts/');
                 },
-                child:const Text('Contact List')),
+                child: const Text('Contact List')),
             ElevatedButton(
               onPressed: () {
                 logindata?.setBool('login', true);
                 Navigator.pushReplacement(context,
-                     MaterialPageRoute(builder: (context) => MyLoginPage()));
+                    MaterialPageRoute(builder: (context) => MyLoginPage()));
               },
               child: const Text('LogOut'),
             ),

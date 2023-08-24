@@ -70,7 +70,7 @@ class WeatherScreenState extends State<WeatherScreen> {
         builder: (context, snapshot) {
           //print(snapshot);
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: const CircularProgressIndicator.adaptive());
+            return const Center(child: CircularProgressIndicator.adaptive());
           }
           if (snapshot.hasError) {
             return Center(child: Text(snapshot.error.toString()));

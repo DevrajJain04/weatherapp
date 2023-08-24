@@ -33,14 +33,12 @@ class BackupContactViewState extends State<BackupContactView> {
         appBar: AppBar(
           title: const Text(
             "Your Contact List",
-            style: TextStyle(color: Colors.blue),
           ),
           centerTitle: true,
-          backgroundColor: Colors.transparent,
           elevation: 0,
         ),
         body: (contacts) == null
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : ListView.builder(
                 itemCount: contacts!.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -56,9 +54,29 @@ class BackupContactViewState extends State<BackupContactView> {
                           "${contacts![index].name.first} ${contacts![index].name.last}"),
                       subtitle: Text(num),
                       onTap: () {
-                        if (contacts![index].phones.isNotEmpty) {
-                          launchUrlString('tel: $num');
-                        }
+                        AlertDialog(
+                          title: Text('Detailed View'),
+                          content: Text('data'),
+                          actions: [
+                            (contacts![index].photo == null)
+                                ? const CircleAvatar(child: Icon(Icons.person))
+                                : CircleAvatar(
+                                    backgroundImage: MemoryImage(image!)),
+                            Text(
+                              "${contacts![index].name.first} ${contacts![index].name.last}",
+                              style: TextStyle(
+                                fontFamily: 'Ariel',
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(num,
+                                style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                ))
+                          ],
+                        );
                       });
                 },
               ));
