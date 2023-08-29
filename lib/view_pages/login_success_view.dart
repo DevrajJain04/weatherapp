@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weatherapp/view_pages/login_page.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -28,7 +28,7 @@ class MyDashboardState extends State<MyDashboard> {
   SharedPreferences? logindata;
   String? username;
   String? dob;
-  int? phone;
+  String? phone;
   @override
   void initState() {
     super.initState();
@@ -40,7 +40,7 @@ class MyDashboardState extends State<MyDashboard> {
     setState(() {
       username = logindata?.getString('username')!;
       dob = logindata?.getString('dob');
-      phone = logindata?.getInt('phone');
+      phone = logindata?.getString('phone');
     });
   }
 

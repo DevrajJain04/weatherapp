@@ -39,6 +39,7 @@ dependencies:
   fast_contacts: ^3.0.3
   shared_preferences: ^2.2.0
   flutter_contacts: ^1.1.7+1
+  font_awesome_flutter: ^10.5.0
 
 
 
@@ -50,6 +51,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+   
+  flutter_launcher_icons: ^0.13.1 
+flutter_icons:
+  android: "weather_app"
+  ios: true
+  image_path: "assets/icons/weather_app/1024.png"  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

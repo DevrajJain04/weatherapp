@@ -2,10 +2,11 @@
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />  
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="weatherapp"
+        android:label="Weather++"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/weather_app">
         <activity
             android:name=".MainActivity"
             android:exported="true"

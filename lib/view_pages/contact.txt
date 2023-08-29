@@ -1,0 +1,8 @@
+(
+                        leading: (contacts![index].photo == null)
+                            ? const CircleAvatar(child: Icon(Icons.person))
+                            : CircleAvatar(backgroundImage: MemoryImage(image!)),
+                        title: Text(
+                            "${contacts![index].name.first} ${contacts![index].name.last}"),
+                        subtitle: Text(num),
+                    )

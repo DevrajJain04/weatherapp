@@ -50,6 +50,7 @@ class WeatherScreenState extends State<WeatherScreen> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
+          
         ),
         centerTitle: true,
         actions: [
@@ -82,6 +83,7 @@ class WeatherScreenState extends State<WeatherScreen> {
           final currentPressure = currentWeatherData['main']['pressure'];
           final currentWindSpeed = currentWeatherData['wind']['speed'];
           final currentHumidity = currentWeatherData['main']['humidity'];
+          final currentSealevel = currentWeatherData['main']['sea_level'];
 
           return Padding(
             padding: const EdgeInsets.all(16.0),
@@ -210,6 +212,11 @@ class WeatherScreenState extends State<WeatherScreen> {
                       icon: Icons.beach_access,
                       label: 'pressure',
                       value: currentPressure.toString(),
+                    ),
+                    AdditionalInfoItem(
+                      icon: Icons.waves_rounded,
+                      label: 'Sea Level',
+                      value: currentSealevel.toString(),
                     ),
                   ],
                 )

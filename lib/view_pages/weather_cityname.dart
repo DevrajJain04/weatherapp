@@ -31,6 +31,7 @@ class CityNameState extends State<CityName> {
         children: [
           TextField(
             controller: cityName,
+            decoration: InputDecoration(hintText: 'Enter City Name'),
           ),
           ElevatedButton(
               onPressed: () {
