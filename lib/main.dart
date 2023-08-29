@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/tetris.dart';
 import 'package:weatherapp/view_pages/contacts_take2.dart';
 import 'package:weatherapp/view_pages/login_page.dart';
 import 'package:weatherapp/view_pages/login_success_view.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
           '/loginsuccess/': (context) => const MyDashboard(),
           '/cityname/': (context) => const CityName(),
           '/contacts/': (context) => const BackupContactView(),
+          '/tetris/': (context) => const Tetris(),
         });
   }
 }

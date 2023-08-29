@@ -93,6 +93,14 @@ class MyDashboardState extends State<MyDashboard> {
               },
               child: const Text('LogOut'),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/tetris/',
+                  );
+                },
+                child: const Text('Game Of Tetris'))
           ],
         ),
       ),
