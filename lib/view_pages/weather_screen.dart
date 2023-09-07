@@ -50,7 +50,6 @@ class WeatherScreenState extends State<WeatherScreen> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
-          
         ),
         centerTitle: true,
         actions: [
@@ -78,12 +77,14 @@ class WeatherScreenState extends State<WeatherScreen> {
           }
           final data = snapshot.data!;
           final currentWeatherData = data['list'][0];
-          final currentTemp = currentWeatherData['main']['temp'];
+          final currentTemp = currentWeatherData['main']['temp'] - 273.15;
           final currentSky = currentWeatherData['weather'][0]['main'];
           final currentPressure = currentWeatherData['main']['pressure'];
           final currentWindSpeed = currentWeatherData['wind']['speed'];
           final currentHumidity = currentWeatherData['main']['humidity'];
           final currentSealevel = currentWeatherData['main']['sea_level'];
+
+          String tempe = (currentTemp.toString()).substring(0, 4);
 
           return Padding(
             padding: const EdgeInsets.all(16.0),
@@ -106,7 +107,7 @@ class WeatherScreenState extends State<WeatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                '$currentTemp K',
+                                '$tempe C',
                                 style: TextStyle(
                                   fontSize: 32,
                                   fontWeight: FontWeight.bold,
