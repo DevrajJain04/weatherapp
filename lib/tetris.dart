@@ -123,7 +123,30 @@ class _TetrisState extends State<Tetris> {
     }
   }
 
-  void rotatePiece() {}
+  void rotatePiece() {
+    setState(() {
+      currentPiece.rotatePiece();
+    });
+  }
+
+  void clearLine() {
+    for (int row = columnLength - 1; row > 0; row--) {
+      bool rowIsFull = true;
+      for (int col = 0; col < rowLength; col++) {
+        if (gameBoard[row][col] == null) {
+          rowIsFull = false;
+          break;
+        }
+      }
+      if (rowIsFull) {
+        for (int r = row; r > 0; r--) {
+          gameBoard = List.from(gameBoard[r - 1]);
+        }
+        gameBoard[0] = List.generate(row, (index) => null);
+        
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +196,7 @@ class _TetrisState extends State<Tetris> {
                       color: Colors.white),
                   IconButton(
                       onPressed: moveRight,
-                      icon: Icon(Icons.arrow_back_ios_new),
+                      icon: Icon(Icons.arrow_forward_ios),
                       color: Colors.white),
                 ],
               ),

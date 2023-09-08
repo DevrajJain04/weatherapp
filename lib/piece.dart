@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weatherapp/tetris.dart';
 import 'package:weatherapp/values.dart';
 
 class Piece {
@@ -54,5 +55,378 @@ class Piece {
         break;
       default:
     }
+  }
+
+  //rotate piece
+  int rotationState = 1;
+  void rotatePiece() {
+    List<int> newPosition = [];
+
+    switch (type) {
+      case Tetromino.L:
+        switch (rotationState) {
+          case 0:
+            newPosition = [
+              posi[1] - rowLength,
+              posi[1],
+              posi[1] + rowLength,
+              posi[1] + rowLength + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 1:
+            newPosition = [
+              posi[1] - 1,
+              posi[1],
+              posi[1] + 1,
+              posi[1] + rowLength - 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 2:
+            newPosition = [
+              posi[1] + rowLength,
+              posi[1],
+              posi[1] - rowLength,
+              posi[1] - rowLength - 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 3:
+            newPosition = [
+              posi[1] - rowLength + 1,
+              posi[1],
+              posi[1] + 1,
+              posi[1] - 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+        }
+
+        break;
+      case Tetromino.J:
+        switch (rotationState) {
+          case 0:
+            newPosition = [
+              posi[1] - rowLength,
+              posi[1],
+              posi[1] + rowLength,
+              posi[1] + rowLength + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 1:
+            newPosition = [
+              posi[1] - rowLength - 1,
+              posi[1],
+              posi[1] - 1,
+              posi[1] + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 2:
+            newPosition = [
+              posi[1] + rowLength,
+              posi[1],
+              posi[1] - rowLength,
+              posi[1] - rowLength + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 3:
+            newPosition = [
+              posi[1] + 1,
+              posi[1],
+              posi[1] - 1,
+              posi[1] + rowLength + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+        }
+
+        break;
+      case Tetromino.I:
+        switch (rotationState) {
+          case 0:
+            newPosition = [
+              posi[1] - 1,
+              posi[1],
+              posi[1] + 1,
+              posi[1] + 2,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 1:
+            newPosition = [
+              posi[1] - rowLength,
+              posi[1],
+              posi[1] + rowLength,
+              posi[1] + 2 * rowLength,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 2:
+            newPosition = [
+              posi[1] + 1,
+              posi[1],
+              posi[1] - 1,
+              posi[1] - 2,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 3:
+            newPosition = [
+              posi[1] + rowLength,
+              posi[1],
+              posi[1] - rowLength,
+              posi[1] - 2 * rowLength,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+        }
+      case Tetromino.O:
+        break;
+
+      case Tetromino.S:
+        switch (rotationState) {
+          case 0:
+            newPosition = [
+              posi[1],
+              posi[1] + 1,
+              posi[1] + rowLength - 1,
+              posi[1] + rowLength,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 1:
+            newPosition = [
+              posi[1] - rowLength,
+              posi[1],
+              posi[1] + 1,
+              posi[1] + rowLength + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 2:
+            newPosition = [
+              posi[1],
+              posi[1] + 1,
+              posi[1] + rowLength - 1,
+              posi[1] + rowLength,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 3:
+            newPosition = [
+              posi[1] - rowLength,
+              posi[1],
+              posi[1] + 1,
+              posi[1] + rowLength + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+        }
+      case Tetromino.Z:
+        switch (rotationState) {
+          case 0:
+            newPosition = [
+              posi[1] + rowLength - 2,
+              posi[1],
+              posi[1] + rowLength - 1,
+              posi[1] + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 1:
+            newPosition = [
+              posi[1] - rowLength + 2,
+              posi[1],
+              posi[1] - rowLength + 1,
+              posi[1] - 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 2:
+            newPosition = [
+              posi[1] + rowLength - 2,
+              posi[1],
+              posi[1] + rowLength - 1,
+              posi[1] + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 3:
+            newPosition = [
+              posi[1] - rowLength + 2,
+              posi[1],
+              posi[1] - rowLength + 1,
+              posi[1] - 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+        }
+      case Tetromino.T:
+        switch (rotationState) {
+          case 0:
+            newPosition = [
+              posi[1] - rowLength,
+              posi[1],
+              posi[1] + 1,
+              posi[1] + rowLength,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 1:
+            newPosition = [
+              posi[1] - 1,
+              posi[1],
+              posi[1] + 1,
+              posi[1] + rowLength,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 2:
+            newPosition = [
+              posi[1] + rowLength,
+              posi[1],
+              posi[1] - 1,
+              posi[1] + rowLength,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+
+          case 3:
+            newPosition = [
+              posi[1] - rowLength,
+              posi[1] - 1,
+              posi[1],
+              posi[1] + 1,
+            ];
+            if (piecePositionIsValid(newPosition)) {
+              posi = newPosition;
+              rotationState = (rotationState + 1) % 4;
+            }
+            break;
+        }
+
+        break;
+
+      default:
+    }
+  }
+
+  bool positionIsValid(int position) {
+    int row = (position / rowLength).floor();
+    int col = position % rowLength;
+    if (row < 0 || col < 0 || gameBoard[row][col] != null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  bool piecePositionIsValid(List<int> piecePosition) {
+    bool firstColOccupied = false;
+    bool lastColOccupied = false;
+
+    for (int pos in piecePosition) {
+      if (!positionIsValid(pos)) {
+        return false;
+      }
+      int col = pos % rowLength;
+      if (col == 0) {
+        firstColOccupied = true;
+      }
+      if (col == rowLength - 1) {
+        lastColOccupied = true;
+      }
+    }
+    return !(firstColOccupied && lastColOccupied);
   }
 }
