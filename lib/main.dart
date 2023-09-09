@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/tetris.dart';
+import 'package:weatherapp/Tetris/tetris.dart';
 import 'package:weatherapp/view_pages/contacts_take2.dart';
 import 'package:weatherapp/view_pages/login_page.dart';
 import 'package:weatherapp/view_pages/login_success_view.dart';

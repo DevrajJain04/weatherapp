@@ -108,9 +108,8 @@ class BackupContactViewState extends State<BackupContactView> {
                                   builder: (BuildContext context) {
                                     return AlertDialog(
                                       buttonPadding: const EdgeInsets.all(4),
-                                      title: const Text('Detailed View'),
-                                      insetPadding:
-                                          EdgeInsets.symmetric(horizontal: 100),    //trying to increase size of alert dialog box 
+                                      title: const Text(
+                                          'Detailed View'), //trying to increase size of alert dialog box
                                       actions: [
                                         (contacts![index].photo == null)
                                             ? const CircleAvatar(
@@ -138,26 +137,22 @@ class BackupContactViewState extends State<BackupContactView> {
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.blue)),
                                         ),
-                                        Row(
-                                          children: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Text(
-                                                    'Go back to list')),
-                                            FloatingActionButton(
-                                              onPressed: () {
-                                                final whatsappUrl =
-                                                    'https://wa.me/$num';
+                                        FloatingActionButton(
+                                          onPressed: () {
+                                            final whatsappUrl =
+                                                'https://wa.me/$num';
 
-                                                launch(whatsappUrl);
-                                              },
-                                              child: FaIcon(
-                                                  FontAwesomeIcons.whatsapp),
-                                            ),
-                                          ],
+                                            launch(whatsappUrl);
+                                          },
+                                          child:
+                                              FaIcon(FontAwesomeIcons.whatsapp),
                                         ),
+                                        TextButton(
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child:
+                                                const Text('Go back to list')),
 
                                         // const AlphabeticalNavigationBar(),
                                       ],

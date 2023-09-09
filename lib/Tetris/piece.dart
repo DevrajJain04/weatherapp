@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weatherapp/tetris.dart';
-import 'package:weatherapp/values.dart';
+import 'package:weatherapp/Tetris/tetris.dart';
+import 'package:weatherapp/Tetris/values.dart';
 
 class Piece {
   Tetromino type;

@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:weatherapp/piece.dart';
-import 'package:weatherapp/pixel.dart';
-import 'package:weatherapp/values.dart';
+import 'package:weatherapp/Tetris/piece.dart';
+import 'package:weatherapp/Tetris/pixel.dart';
+import 'package:weatherapp/Tetris/values.dart';
 
 List<List<Tetromino?>> gameBoard = List.generate(
   columnLength,
