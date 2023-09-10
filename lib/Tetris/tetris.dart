@@ -23,9 +23,10 @@ class Tetris extends StatefulWidget {
 
 class _TetrisState extends State<Tetris> {
   Piece currentPiece = Piece(type: Tetromino.L);
+  int currentScore = 0;
+  int gameOver = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startGame();
   }
@@ -39,10 +40,46 @@ class _TetrisState extends State<Tetris> {
   void gameLoop(Duration frameRate) {
     Timer.periodic(frameRate, (timer) {
       setState(() {
+        clearLine();
         checkLanding();
+        if (gameOver == 2) {
+          timer.cancel();
+          showGameOverDialog();
+        }
         currentPiece.movePiece(Direction.down);
       });
     });
+  }
+
+  void showGameOverDialog() {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              title: Text('Gameover'),
+              content: Text('Your score is : $currentScore'),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      resetGame();
+                      Navigator.pop(context);
+                    },
+                    child: Text('Play Again'))
+              ],
+            ));
+  }
+
+  void resetGame() {
+    gameBoard = List.generate(
+      columnLength,
+      (i) => List.generate(
+        rowLength,
+        (j) => null,
+      ),
+    );
+    gameOver = 0;
+    currentScore = 0;
+    createNewPiece();
+    startGame();
   }
 
   bool checkCollision(Direction direction) {
@@ -105,6 +142,12 @@ class _TetrisState extends State<Tetris> {
         Tetromino.values[rand.nextInt(Tetromino.values.length)];
     currentPiece = Piece(type: randomType);
     currentPiece.initializePiece();
+
+    if (isGameOver()) {
+      gameOver = 1;
+    } else {
+      gameOver = 0;
+    }
   }
 
   void moveLeft() {
@@ -143,9 +186,18 @@ class _TetrisState extends State<Tetris> {
           gameBoard = List.from(gameBoard[r - 1]);
         }
         gameBoard[0] = List.generate(row, (index) => null);
-        
+        currentScore++;
       }
     }
+  }
+
+  bool isGameOver() {
+    for (int col = 1; col < rowLength; col++) {
+      if (gameBoard[0][col] != null) {
+        return true;
+      }
+    }
+    return false;
   }
 
   @override
@@ -179,8 +231,12 @@ class _TetrisState extends State<Tetris> {
                     }
                   }),
             ),
+            Text('Score:' + currentScore.toString(),
+                style: TextStyle(
+                  color: Colors.white,
+                )),
             Padding(
-              padding: const EdgeInsets.only(bottom: 40),
+              padding: const EdgeInsets.only(bottom: 40, top: 50),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
