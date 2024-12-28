@@ -2,9 +2,7 @@
 
 A new Flutter project.
 
-
-https://github.com/DevrajJain04/weatherapp/assets/121715976/e4436d48-8752-4835-a56e-2a0e689fa066
-
+https://github.com/user-attachments/assets/58c0fd53-76fd-4399-8be1-7dcd20edaa6c
 
 ## Getting Started
 
